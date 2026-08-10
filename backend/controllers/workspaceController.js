@@ -1,4 +1,4 @@
-import { dataScientistDemo } from "../demo/dataScientistDemo.js";
+import { dataScientistDemo } from "../demo/datascientistDemo.js";
 import User from "../models/User.js";
 import { callGeminiWithRotation } from "../utils/geminiClient.js";
 import { GoogleGenAI } from "@google/genai";
