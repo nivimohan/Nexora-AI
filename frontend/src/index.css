@@ -1,0 +1,175 @@
+/* ============================================================
+   NEXORA AI — Global Stylesheet
+   Imports Google Fonts and sets the cosmic design baseline.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────
+   BASE LAYER — Cosmic Canvas Reset
+───────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    @apply scroll-smooth;
+    font-size: 16px;
+  }
+
+  body {
+    @apply bg-plum text-rose font-sans antialiased;
+    background-image: radial-gradient(ellipse at 20% 10%, rgba(77, 76, 125, 0.4) 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 90%, rgba(130, 115, 151, 0.2) 0%, transparent 55%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar styling — cosmic theme */
+  ::-webkit-scrollbar          { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track    { @apply bg-plum; }
+  ::-webkit-scrollbar-thumb    { @apply bg-amethyst rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-rose; }
+
+  /* Text selection */
+  ::selection {
+    @apply bg-rose/30 text-white;
+  }
+
+  /* Focus rings */
+  :focus-visible {
+    @apply outline-none ring-2 ring-rose/60 ring-offset-2 ring-offset-plum rounded-lg;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+
+  a {
+    @apply text-rose no-underline transition-colors duration-200 hover:text-white;
+  }
+
+  input, textarea, select {
+    @apply bg-nebula border border-amethyst/30 text-white placeholder-amethyst/60
+           rounded-xl px-4 py-2.5 transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-rose/50 focus:border-rose/40;
+  }
+}
+
+/* ─────────────────────────────────────
+   COMPONENT LAYER — Reusable Primitives
+───────────────────────────────────── */
+@layer components {
+
+  /* ── Card ── */
+  .card {
+    @apply bg-nebula border border-amethyst/20 rounded-2xl shadow-card
+           backdrop-blur-sm transition-all duration-300;
+  }
+  .card-hover {
+    @apply hover:shadow-card-hover hover:border-rose/30 hover:-translate-y-1;
+  }
+
+  /* ── Glassmorphism ── */
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-rose text-plum font-semibold font-display
+           px-6 py-2.5 rounded-xl
+           shadow-glow-rose hover:shadow-glow-nebula
+           transition-all duration-300 hover:scale-105 active:scale-95
+           focus-visible:ring-2 focus-visible:ring-rose;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-nebula text-rose font-semibold font-display
+           border border-rose/30 px-6 py-2.5 rounded-xl
+           transition-all duration-300 hover:bg-rose/10 hover:border-rose/60
+           hover:scale-105 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           text-amethyst font-medium px-4 py-2 rounded-lg
+           transition-all duration-200 hover:text-rose hover:bg-white/5;
+  }
+
+  /* ── Badge / Tag ── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5
+           text-xs font-semibold rounded-full
+           bg-rose/15 text-rose border border-rose/20;
+  }
+
+  /* ── Section Heading ── */
+  .section-title {
+    @apply text-2xl font-display font-bold text-white tracking-tight;
+  }
+  .section-subtitle {
+    @apply text-sm text-amethyst mt-1;
+  }
+
+  /* ── Progress Ring container ── */
+  .progress-ring-container {
+    @apply relative inline-flex items-center justify-center;
+  }
+
+  /* ── Shimmer loading placeholder ── */
+  .shimmer {
+    @apply relative overflow-hidden bg-nebula rounded-xl;
+  }
+  .shimmer::after {
+    content: "";
+    @apply absolute inset-0;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(216, 185, 195, 0.08) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    @apply w-full h-px bg-gradient-to-r from-transparent via-amethyst/30 to-transparent my-4;
+  }
+}
+
+/* ─────────────────────────────────────
+   UTILITY LAYER — One-off Helpers
+───────────────────────────────────── */
+@layer utilities {
+  .text-gradient-rose {
+    background: linear-gradient(135deg, #D8B9C3 0%, #827397 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-cosmic {
+    background: linear-gradient(135deg, #ffffff 0%, #D8B9C3 50%, #827397 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(135deg, rgba(216,185,195,0.4), rgba(130,115,151,0.1)) 1;
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
