@@ -329,7 +329,10 @@ export default function DashboardPage() {
                 exit={{    opacity: 0, y: -8 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                <ResumeAnalyzerPage setActiveView={setActiveView} />
+                <ResumeAnalyzerPage
+  setActiveView={setActiveView}
+  setUser={setUser}
+/>
               </motion.div>
             )}
 

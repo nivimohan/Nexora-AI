@@ -124,7 +124,7 @@ function FeedbackCard({ title, icon: Icon, statusText, statusColor = "text-white
 // MAIN COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function ResumeAnalyzerPage({ setActiveView }) {
+export default function ResumeAnalyzerPage({ setActiveView, setUser }) {
   const user       = JSON.parse(localStorage.getItem("nexora_user") || "{}");
   const targetRole = user?.targetRole || "Software Engineer";
 
@@ -193,8 +193,13 @@ export default function ResumeAnalyzerPage({ setActiveView }) {
         setAnalysisData(response.data.data);
         setStatus("complete");
         if (response.data?.user) {
-          localStorage.setItem("nexora_user", JSON.stringify(response.data.user));
-        }
+  localStorage.setItem(
+    "nexora_user",
+    JSON.stringify(response.data.user)
+  );
+
+  setUser(response.data.user);
+}
       } else {
         throw new Error("Invalid response format received from server.");
       }
